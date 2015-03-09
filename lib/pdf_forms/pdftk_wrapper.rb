@@ -28,7 +28,7 @@ module PdfForms
       tmp.close
       fdf.save_to tmp.path
       fill_options = {:tmp_path => tmp.path}.merge(fill_options)
-      command = pdftk_command q_template, 'fill_form', safe_path(tmp.path), 'output', q_destination, add_options(fill_options)
+      command = pdftk_command q_template, 'fill_form', safe_path(tmp.path), 'output', q_destination, add_options(fill_options), 'need_appearances'
       output = %x{#{command}}
       unless File.readable?(destination) && File.size(destination) > 0
         fdf_path = nil
